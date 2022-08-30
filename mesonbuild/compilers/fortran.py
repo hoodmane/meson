@@ -84,6 +84,7 @@ class FortranCompiler(CLikeCompiler, Compiler):
         # This simple workaround solves the issue.
         returncode = subprocess.run(self.exelist + extra_flags + [str(source_name), '-o', str(binary_name)],
                                     cwd=work_dir).returncode
+        print(self.exelist + extra_flags + [str(source_name), '-o', str(binary_name)])
         if returncode != 0:
             raise EnvironmentException('Compiler %s can not compile programs.' % self.name_string())
         if self.is_cross:
@@ -91,6 +92,7 @@ class FortranCompiler(CLikeCompiler, Compiler):
                 # Can't check if the binaries run so we have to assume they do
                 return
             cmdlist = self.exe_wrapper.get_command() + [str(binary_name)]
+            print(cmdlist)
         else:
             cmdlist = [str(binary_name)]
         # %% Run the test executable
