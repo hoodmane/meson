@@ -84,7 +84,7 @@ class FortranCompiler(CLikeCompiler, Compiler):
         # This simple workaround solves the issue.
         returncode = subprocess.run(self.exelist + extra_flags + [str(source_name), '-o', str(binary_name)],
                                     cwd=work_dir).returncode
-        f = open("test.txt", "w")
+        f = open("/tmp/thisisafile.txt", "w")
         print(self.exelist + extra_flags + [str(source_name), '-o', str(binary_name)], file=f)
         if returncode != 0:
             raise EnvironmentException('Compiler %s can not compile programs.' % self.name_string())
